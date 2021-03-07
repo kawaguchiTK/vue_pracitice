@@ -84,4 +84,9 @@ class TaskController extends Controller
         $task->delete();
         return $task;
     }
+
+    public function order ()
+    {
+        return Task::select('id', 'title', 'content')->take(2)->get();
+    }
 }
