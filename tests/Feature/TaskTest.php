@@ -58,13 +58,14 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function api_taskにPOSTするとテーブルに保存される()
+    public function testpostにPOSTするとテーブルに保存される()
     {
         $params = [
             'title' => 'test',
             'content' => 'test content',
+            'person_in_charge' => 'test',
         ];
-        $this->postJson('api/order', $params);
+        $this->postJson('api/testpost', $params);
         $this->assertDatabaseHas('tasks', $params);
     }
 }

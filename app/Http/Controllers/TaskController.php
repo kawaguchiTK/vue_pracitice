@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Log;
 
 class TaskController extends Controller
 {
@@ -88,5 +89,12 @@ class TaskController extends Controller
     public function order ()
     {
         return Task::select('id', 'title', 'content')->take(2)->get();
+    }
+
+    public function testPost(Request $request)
+    {
+        $task = new Task();
+        Log::debug($request->all());
+        $task->create($request->all());
     }
 }
