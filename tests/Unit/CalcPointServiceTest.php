@@ -50,4 +50,24 @@ class CalcPointServiceTest extends TestCase
          $result = CalcPointService::calcPoint($amount);
          $this->assertSame($expected,$result);
      }
+
+
+     /**
+      * @test
+      * 例外のテスト
+      * try catch を使うやり方
+      */
+      public function exception_try_catch()
+      {
+          try {
+              throw new \InvalidArgumentException('message', 200);
+              $this->fail();
+          } catch (\Throwable $e) {
+              $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+              // エラー内容も検証している
+              $this->assertSame(200, $e->getCode());
+              $this->assertSame('message', $e->getMessage());
+          }
+
+      }
 }
